@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -91,5 +90,29 @@ public class SolutionTest {
     public void toLowerCase() {
         String str = "Hello world";
         System.out.println(Solution.toLowerCase(str));
+    }
+
+    @Test
+    public void accumulate() {
+        int n = 30;
+        // 结果应该为 30*(30+1)/2 = 465
+        int result = Solution.accumulate(n);
+        assertEquals(465,result);
+    }
+
+    @Test
+    public void factorial() {
+        int n = 5;
+        int result = Solution.factorial(n);
+        assertEquals(120,result);
+    }
+
+    @Test
+    public void bubbleSort() {
+        int[] array = {1,2,5,6,4,3};
+        array = Solution.bubbleSort(array);
+        for(int i=0;i<array.length;i++){
+            System.out.println(array[i]);
+        }
     }
 }

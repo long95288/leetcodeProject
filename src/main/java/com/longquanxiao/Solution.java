@@ -163,4 +163,59 @@ public class Solution {
         }
         return String.valueOf(arr);
     }
+    /**
+     * 递归实现累加
+     */
+    public static int accumulate(int n){
+        if(n < 0){
+            // 递归异常
+            return -1;
+        }
+        if(n == 0){
+            // 递归出口
+           return 0;
+        }else {
+            // 递归的函数体
+            return n + Solution.accumulate(n-1);
+        }
+    }
+
+    /**
+     * 冒泡排序
+     * @param array 数组
+     * @return
+     */
+    public static int[] bubbleSort(int[] array){
+        for(int i=0;i<array.length;i++){
+            for (int j=i+1; j<array.length; j++){
+                if(array[i] > array[j]){
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }else{
+                    continue;
+                }
+                for(int p=0;p<array.length;p++){
+                    System.out.print(array[p]+" ");
+                }
+                System.out.println();
+            }
+        }
+        return array;
+    }
+
+    /**
+     * 递归实现阶乘
+     */
+    public static int factorial(int n){
+        if(n<0){
+            return -1;
+        }
+        if(n == 1){
+            return 1;
+        } else {
+          return n * Solution.factorial(n-1);
+        }
+    }
+
 }
