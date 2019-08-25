@@ -217,5 +217,70 @@ public class Solution {
           return n * Solution.factorial(n-1);
         }
     }
+    /**
+     * 将字符串中的空格更改为%20
+     * 思路:
+     * 1、先计算出空格数
+     * 2、根据空格数来创建新的字符数组
+     * 3、然后从尾部开始移动
+     */
+    public static Character[] spaceChange(char[] array) {
+        // 获得数组的长度
+        int length = array.length;
+        int count = 0;
+        for(int i=0;i<length;i++){
+            if(array[i] == ' '){
+                count ++;
+            }
+        }
+        // 计算替换后的长度
+        // 一个空格替换为%20 每个空格都会多出2个字符
+        int replaceLength = length + 2 * count;
+        Character[] newArray =new Character[replaceLength];
+        int insertPoint = replaceLength-1;
+        for (int readPoint = length-1; readPoint>=0; readPoint --) {
+            if(array[readPoint] == ' '){
+                // 空格更改为%20
+                newArray[insertPoint] = '0';
+                newArray[--insertPoint] = '2';
+                newArray[--insertPoint] = '%';
+                insertPoint --;
+            }else {
+                newArray[insertPoint] = array[readPoint];
+                insertPoint --;
+            }
+        }
+        return newArray;
+    }
 
+    /**
+     * 快速排序
+     * @param arr 待排序的数组
+     * @param start 开始点
+     * @param end 结束点
+     * @return 返回排序后的结果
+     */
+    public static int[] quickSort(int[] arr,int start,int end) {
+        int pivot = arr[start];
+        int i = start;
+        int j = end;
+        while (i < j){
+            while (i<j &&arr[j] > pivot){
+                j--;
+            }
+            while (i<j && arr[i] < pivot){
+                ++i;
+            }
+            if(arr[i] == arr[j] && i <j){
+                ++i;
+            }else {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        if(i-1 > start) arr = quickSort(arr,start,i-1);
+        if(j+1<end) arr = quickSort(arr,j+1,end);
+        return (arr);
+    }
 }

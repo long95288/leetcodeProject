@@ -115,4 +115,24 @@ public class SolutionTest {
             System.out.println(array[i]);
         }
     }
+
+    @Test
+    public void spaceChange() {
+        char[] array = "Hello World ,I'am a coder".toCharArray();
+        Character[] ret = Solution.spaceChange(array);
+        for (int i= 0;i < ret.length;i++){
+            System.out.print(ret[i]);
+        }
+        System.out.println();
+    }
+    @Test
+    public void testQuickSort() {
+        int[] arr = new int[]{4,3,12,5,67,88,125,62};
+        int length = arr.length;
+        arr = Solution.quickSort(arr,0,length-1);
+        for(int i:arr){
+            System.out.print(i+"\t");
+        }
+        System.out.println("");
+    }
 }
