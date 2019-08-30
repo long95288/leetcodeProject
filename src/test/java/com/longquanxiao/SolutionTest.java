@@ -135,4 +135,9 @@ public class SolutionTest {
         }
         System.out.println("");
     }
+
+    @Test
+    public void testInputAndOutput() {
+        Solution.inputAndOutput();
+    }
 }

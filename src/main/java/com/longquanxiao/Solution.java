@@ -2,6 +2,8 @@ package com.longquanxiao;
 
 import com.longquanxiao.struct.ListNode;
 
+import java.util.Scanner;
+
 /**
  * @author longquanxiao
  * @date 2019/8/1
@@ -282,5 +284,17 @@ public class Solution {
         if(i-1 > start) arr = quickSort(arr,start,i-1);
         if(j+1<end) arr = quickSort(arr,j+1,end);
         return (arr);
+    }
+    /**
+     * 学习java的输入和输出
+     */
+    public static void inputAndOutput() {
+        Scanner cin = new Scanner(System.in);
+        int N, M;
+        while (cin.hasNext()) {
+            N = cin.nextInt();
+            M = cin.nextInt();
+            System.out.println(String.format("%d %d",N,M));
+        }
     }
 }
