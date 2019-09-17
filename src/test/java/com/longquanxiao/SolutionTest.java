@@ -140,4 +140,26 @@ public class SolutionTest {
     public void testInputAndOutput() {
         Solution.inputAndOutput();
     }
+
+    @Test
+    public void testAddTwoNumbers() {
+        ListNode l1 = new ListNode(2);
+        ListNode a = new ListNode(4);
+        ListNode b = new ListNode(3);
+        l1.next = a;
+        a.next = b;
+
+        ListNode l2 = new ListNode(5);
+        ListNode c = new ListNode(6);
+        ListNode d = new ListNode(4);
+        l2.next = c;
+        c.next = d;
+
+        ListNode re = Solution.addTwoNumbers(l1,l2);
+        while (re != null){
+            System.out.println(re.val);
+            re = re.next;
+        }
+
+    }
 }

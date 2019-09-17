@@ -311,4 +311,64 @@ public class Solution {
             System.out.println(String.format("%d %d",N,M));
         }
     }
+
+    /**
+     * 两数之和
+     * @param l1 第一个数
+     * @param l2 第二个数
+     * @return 相加的结果
+     */
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+        while (l1!=null && l2!= null) {
+
+        }
+
+        // 转换成整数
+        int first = 0;
+        int second = 0;
+
+        int base = 1;
+        while(l1 != null) {
+            first = first + l1.val * base;
+            l1 = l1.next;
+            base *= 10;
+        }
+        System.out.println("l1="+first);
+        base = 1;
+        while(l2 != null) {
+            second = second + l2.val * base;
+            l2 = l2.next;
+            base *= 10;
+        }
+        System.out.println("l2="+second);
+
+        base = 10;
+        int add = first + second;
+
+        System.out.println("add="+add);
+
+        // 获得最后一个数
+        int sub = add % base;
+        ListNode node = new ListNode(sub);
+        ListNode re = node;
+
+        add = add - sub;
+        add = add / base;
+
+        while(add > 0) {
+            sub = add % base;
+            ListNode newNode = new ListNode(sub);
+            node.next = newNode;
+            node = newNode;
+            add = add - sub;
+            add = add / base;
+        }
+        return re;
+    }
 }
