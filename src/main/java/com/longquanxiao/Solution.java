@@ -371,4 +371,17 @@ public class Solution {
         }
         return re;
     }
+    public static int maxSubArray(int[] nums) {
+        int[] opt = new int[nums.length];
+        int max = nums[0];
+        for(int i=0; i < nums.length; i++){
+            if(i == 0){
+                opt[0] = nums[0];
+            } else {
+              opt[i] = Math.max(opt[i-1]+nums[i],nums[i]);
+              max= Math.max(opt[i],max);
+            }
+        }
+        return max;
+    }
 }

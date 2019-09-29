@@ -162,4 +162,11 @@ public class SolutionTest {
         }
 
     }
+    @Test
+    public void testMaxSubArray() {
+        int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
+        int max = Solution.maxSubArray(nums);
+        assertEquals(max,6);
+
+    }
 }
