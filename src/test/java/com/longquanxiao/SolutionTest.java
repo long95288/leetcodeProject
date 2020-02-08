@@ -169,4 +169,20 @@ public class SolutionTest {
         assertEquals(max,6);
 
     }
+
+    @Test
+    public void testClimbStairs() {
+        int top = 1;
+        assertEquals(1,Solution.climbStairs(top));
+        top = 2;
+        assertEquals(2,Solution.climbStairs(top));
+        top = 3;
+        assertEquals(3, Solution.climbStairs(top));
+    }
+
+    @Test
+    public void testSingleNumber() {
+        int[] nums = {1,1,2};
+        assertEquals(2,Solution.singleNumber(nums));
+    }
 }

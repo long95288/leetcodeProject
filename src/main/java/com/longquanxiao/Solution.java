@@ -384,4 +384,62 @@ public class Solution {
         }
         return max;
     }
+
+    /**
+     * 爬楼梯
+     * 一次可以上一个台阶，或者上两个台阶
+     * n 总的台阶数
+     * 返回可能
+     * @param n
+     * @return
+     */
+    public static int climbStairs(int n){
+        if (n == 1){
+            return 1;
+        }else if (n == 2) {
+            return 2;
+        }else {
+            // dp 最后一个台阶上去的 + 最后是两个台阶的情况
+            return climbStairs(n-1)+climbStairs(n-2);
+        }
+    }
+
+    /**
+     * 带记录的dp
+     * @param n
+     * @return
+     */
+    public static int climbStairs2(int n){
+        int[] dp = new int[n+1];
+        for (int i=0;i<=n;i++){
+            if (n==1){
+                dp[i] =1;
+            }else if(n ==2){
+                dp[i] = 2;
+            }else{
+                dp[i] = dp[i-1] + dp[i+2];
+            }
+        }
+        return dp[n];
+    }
+
+    /**
+     * 只出现一次的数字
+     * 使用异或的操作来判断是否重复
+     * 相同数字异或等于0
+     * 0异或任何数字都等于数字本身
+     * 将数组全部异或之后，剩下的数字就是单独的数字
+     * @param nums
+     * @return
+     */
+    public static int singleNumber(int[] nums){
+        //
+        int result = 0;
+        for (int num :
+                nums) {
+            result ^= num;
+        }
+        //
+        return result;
+    }
 }
