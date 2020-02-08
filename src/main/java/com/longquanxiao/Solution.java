@@ -442,4 +442,44 @@ public class Solution {
         //
         return result;
     }
+
+    /**
+     * 给定一个包含 0, 1, 2, ..., n 中 n 个数的序列，找出 0 .. n 中没有出现在序列中的那个数。
+     * @param nums
+     * @return
+     */
+    public static int missingNumber(int[] nums){
+        // 等差数列的和为 n(n+1)/2
+        // 缺失的数字 = 未缺失的数组和 - 缺失的数组和
+        //
+        int n = nums.length;
+        int result = 0;
+        for (int num :
+                nums) {
+            result += num;
+        }
+        return n*(n+1)/2 - result;
+    }
+
+    /**
+     *
+     * @param nums
+     * @param val
+     * @return
+     */
+    public static int removeElement(int[] nums, int val){
+       // 新数组的遍历下标
+        int point = -1;
+        for (int i = 0; i < nums.length; i++) {
+            // i 为遍历指针
+            if (nums[i] != val){
+                // 开辟新空间
+                point ++;
+                // 将当前的数字赋值到新数组中
+                nums[point] = nums[i];
+            }
+        }
+        // 返回新数组的长度
+       return point + 1;
+    }
 }
