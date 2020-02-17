@@ -462,7 +462,16 @@ public class Solution {
     }
 
     /**
+     * 27、移除元素
+     *  给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
      *
+     * 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+     *
+     * 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+     *
+     * 来源：力扣（LeetCode）
+     * 链接：https://leetcode-cn.com/problems/remove-element
+     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      * @param nums
      * @param val
      * @return
@@ -481,5 +490,55 @@ public class Solution {
         }
         // 返回新数组的长度
        return point + 1;
+    }
+
+    /**
+     * 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+     * @param x
+     * @return
+     */
+    public static int reverse(int x){
+        int result = 0;
+        // 正负标识
+        boolean status = true;
+        // append flag
+        boolean appendFlage = false;
+
+        if (x < 0){
+            status = false;
+        }
+        String value = String.valueOf(x);
+        StringBuilder sb = new StringBuilder();
+        if(status){
+            // 正数处理
+            for (int i = value.length() -1; i >= 0; i--) {
+                if(value.charAt(i) == '0' && !appendFlage){
+                    continue;
+                }else {
+                    appendFlage = true;
+                }
+                sb.append(value.charAt(i));
+            }
+            try{
+               result = Integer.valueOf(sb.toString());
+            }catch (NumberFormatException e){
+                // null
+            }
+        }else{
+            // 负数处理
+            sb.append('-');
+            for (int i = value.length()-1; i >= 1; i--) {
+                if(value.charAt(i) == '0' && !appendFlage){
+                    continue;
+                }else{
+                    appendFlage = true;
+                }
+                sb.append(value.charAt(i));
+            }
+            try {
+                result = Integer.valueOf(sb.toString());
+            }catch (NumberFormatException e){}
+        }
+        return result;
     }
 }

@@ -185,4 +185,20 @@ public class SolutionTest {
         int[] nums = {1,1,2};
         assertEquals(2,Solution.singleNumber(nums));
     }
+
+    @Test
+    public void testReverse() {
+        int result = Solution.reverse(123);
+        assertEquals(321,result);
+        result = Solution.reverse(-123);
+        assertEquals(-321,result);
+        result = Solution.reverse(120);
+        assertEquals(21,result);
+        result = Solution.reverse(901000);
+        assertEquals(109,result);
+        result = Solution.reverse(1534236469);
+        assertEquals(0,result);
+        assertEquals(0,Solution.reverse(-1534236469));
+
+    }
 }
