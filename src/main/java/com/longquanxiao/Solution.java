@@ -541,4 +541,42 @@ public class Solution {
         }
         return result;
     }
+
+    /**
+     * 121
+     * 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数
+     * @param x
+     * @return
+     */
+    public static boolean isPalindrome(int x){
+        // 负数肯定不是回文数
+        if (x < 0) return false;
+        // 个位数为回文数
+        if(x>=0 && x<10) return true;
+
+        // 整数翻转,相同为回文
+        long copyData = x;
+        // 121 = 1*100 + 2*10 + 1*1
+        // 获取数字的最高位数
+        long baseSub = 1;
+        int length = 0;
+        while (copyData/baseSub != 0){
+            length += 1;
+            baseSub *= 10;
+        }
+        System.out.println("整数的位数:"+length);
+        long newData = 0;
+        length --;
+        // 构建新的数据
+        while (copyData > 0){
+            newData = (copyData % 10) * (long)Math.pow(10,length) + newData;
+            // 减去已经记录的,并且下一次乘数减一
+            copyData /= 10;
+            if (copyData == 0) break;
+            length --;
+        }
+        System.out.println("newData:"+newData);
+        if (newData == x) return true;
+        return false;
+    }
 }

@@ -201,4 +201,11 @@ public class SolutionTest {
         assertEquals(0,Solution.reverse(-1534236469));
 
     }
+
+    @Test
+    public void testIsPalindrome() {
+        // assertEquals(true,Solution.isPalindrome(120));
+        assertEquals(true,Solution.isPalindrome(1410110141));
+        assertEquals(false,Solution.isPalindrome(-121));
+    }
 }
