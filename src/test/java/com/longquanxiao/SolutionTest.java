@@ -208,4 +208,25 @@ public class SolutionTest {
         assertEquals(true,Solution.isPalindrome(1410110141));
         assertEquals(false,Solution.isPalindrome(-121));
     }
+
+    @Test
+    public void testRemoveDuplicates() {
+        String s = "abbaca";
+        assertEquals("ca",new Solution().removeDuplicates(s));
+        s = "aaaabccbccd";
+        assertEquals("d",new Solution().removeDuplicates(s));
+    }
+
+    @Test
+    public void testSearch() {
+        int[] arr = {15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14};
+        int target = 5;
+        assertEquals(8,Solution.search(arr,target));
+        int[] arr2 = {5,5,5,1,2,3,4,5};
+        target = 5;
+        assertEquals(0,Solution.search(arr2,target));
+        // [-1, 0, 0, 3, 7, 8, 11, 16, 16, 18, 19, 23, -22, -20, -20, -19, -18, -12, -11, -7, -6, -4, -2]
+        //154494562
+        assertEquals(-1,Solution.search(new int[]{-1, 0, 0, 3, 7, 8, 11, 16, 16, 18, 19, 23, -22, -20, -20, -19, -18, -12, -11, -7, -6, -4, -2},154494562));
+    }
 }

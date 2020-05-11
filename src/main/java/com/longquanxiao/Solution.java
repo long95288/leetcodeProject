@@ -325,51 +325,8 @@ public class Solution {
         if (l2 == null) {
             return l1;
         }
-        while (l1!=null && l2!= null) {
 
-        }
-
-        // 转换成整数
-        int first = 0;
-        int second = 0;
-
-        int base = 1;
-        while(l1 != null) {
-            first = first + l1.val * base;
-            l1 = l1.next;
-            base *= 10;
-        }
-        System.out.println("l1="+first);
-        base = 1;
-        while(l2 != null) {
-            second = second + l2.val * base;
-            l2 = l2.next;
-            base *= 10;
-        }
-        System.out.println("l2="+second);
-
-        base = 10;
-        int add = first + second;
-
-        System.out.println("add="+add);
-
-        // 获得最后一个数
-        int sub = add % base;
-        ListNode node = new ListNode(sub);
-        ListNode re = node;
-
-        add = add - sub;
-        add = add / base;
-
-        while(add > 0) {
-            sub = add % base;
-            ListNode newNode = new ListNode(sub);
-            node.next = newNode;
-            node = newNode;
-            add = add - sub;
-            add = add / base;
-        }
-        return re;
+        return null;
     }
     public static int maxSubArray(int[] nums) {
         int[] opt = new int[nums.length];
@@ -576,7 +533,120 @@ public class Solution {
             length --;
         }
         System.out.println("newData:"+newData);
-        if (newData == x) return true;
+        if (newData == x) {
+            return true;
+        }
         return false;
+    }
+
+    /**
+     * 给出由小写字母组成的字符串 S，重复项删除操作会选择两个相邻且相同的字母，并删除它们。
+     *
+     * 在 S 上反复执行重复项删除操作，直到无法继续删除。
+     *
+     * 在完成所有重复项删除操作后返回最终的字符串。答案保证唯一
+     *
+     * 来源：力扣（LeetCode）
+     * 链接：https://leetcode-cn.com/problems/remove-all-adjacent-duplicates-in-string
+     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     * @param S
+     * @return
+     */
+    public String removeDuplicates(String S) {
+        if (!isDuplication(S)){
+            return S;
+        }
+        // 去除重复项
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < S.length(); i++) {
+            if (i == S.length() -1){
+                sb.append(S.charAt(i));
+                break;
+            }
+            if (S.charAt(i + 1) == S.charAt(i)) {
+                i++;
+                continue;
+            }
+            sb.append(S.charAt(i));
+        }
+        return removeDuplicates(sb.toString());
+    }
+    private boolean isDuplication(String s){
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i-1) == s.charAt(i)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public int removeDuplicates(int[] nums) {
+        // 第一个肯定不重复
+        int index = 0;
+        for(int i=1;i<nums.length;i++){
+            if (nums[index] != nums[i]){
+                // 等价于开辟新空间
+                index ++;
+                // 赋值
+                nums[index] =nums[i];
+            }
+        }
+        return index+1;
+    }
+
+    /**
+     * 搜索旋转数组。给定一个排序后的数组，包含n个整数，但这个数组已被旋转过很多次了，次数不详。请编写代码找出数组中的某个元素，假设数组元素原先是按升序排列的。若有多个相同元素，返回索引值最小的一个。
+     *
+     * 示例1:
+     *
+     *  输入: arr = [15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14], target = 5
+     *  输出: 8（元素5在该数组中的索引）
+     * 示例2:
+     *
+     *  输入：arr = [15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14], target = 11
+     *  输出：-1 （没有找到）
+     *
+     * 来源：力扣（LeetCode）
+     * 链接：https://leetcode-cn.com/problems/search-rotate-array-lcci
+     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     * @param arr
+     * @param target
+     * @return
+     */
+    public static int search(int[] arr, int target) {
+        int first = 0;
+        int last = arr.length-1;
+        while (first != last){
+            // 二分点
+            int mid = (first + last )/2;
+            // 重置二分点
+            if (arr[first] < arr[mid]){
+                // 左边单增数据
+                if(target >= arr[first] && target <= arr[mid]){
+                    // target位于左边
+                    // [target]mid[]
+                    last = mid;
+                }else{
+                    // target 位于右边
+                    // []mid[target]
+                    first = mid + 1;
+                }
+            }else if (arr[first] > arr[mid]){
+                // 增减都有
+                if (arr[first] <= target || target<= arr[mid]){
+                    // [target]mid[]
+                    last = mid;
+                }else{
+                    // []mid[target]
+                    first = mid + 1;
+                }
+            }else if (arr[first] == arr[mid]){
+                if (arr[first] != target){
+                    first ++;
+                }else {
+                    last = first;
+                }
+            }
+        }
+        return (arr[first] == target)?first:-1;
     }
 }
